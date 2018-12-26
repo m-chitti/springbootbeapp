@@ -14,7 +14,7 @@ steps:
 - name: 'gcr.io/$PROJECT_ID/gcloud-maven'
   args: ['mvn', '--version']
 - name: 'gcr.io/$PROJECT_ID/gcloud-maven'
-  args: ['mvn', 'appengine','deploy']
+  args: ['appengine','deploy']
 
 images: ['gcr.io/$PROJECT_ID/gcloud-maven']
 
