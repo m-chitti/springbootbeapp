@@ -2,6 +2,17 @@
 # $ gcloud builds submit . --config=cloudbuild.yaml
 
 steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--tag=gcr.io/$PROJECT_ID/gcloud-maven', '.']
+# Simple sanity check: invoke java to confirm that it was installed correctly.
+- name: 'gcr.io/$PROJECT_ID/gcloud-maven'
+  args: ['java', '-version']
+# Simple sanity check: invoke gcloud to confirm that it was installed correctly.
+- name: 'gcr.io/$PROJECT_ID/gcloud-maven'
+  args: ['gcloud', 'projects', 'list']
+# Simple sanity check: invoke maven to confirm that it was installed correctly.
+- name: 'gcr.io/$PROJECT_ID/gcloud-maven'
+  args: ['mvn', '--version']
 - name: 'gcr.io/$PROJECT_ID/gcloud-maven'
   args: ['app', 'deploy']
  # args: ['appengine', 'deploy', '--image-url=gcr.io/$PROJECT_ID/gcloud-maven']
